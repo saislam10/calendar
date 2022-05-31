@@ -3,11 +3,19 @@ var input = $("#input");
 
 for (var i = 9; i <= 17; i++){
     var rows = $("<div class=row>");
-    var saveBtn = $("<button class=col-1>");
-    var text = $("<textarea class=col-10>");
-    var time = $("<div class=col-1>")
+    var saveBtn = $("<button>").attr('class', 'col-1 saveBtn');
+    var text = $("<textarea>").attr('class', 'col-10')
+    var time = $("<div>").attr('class', 'col-1 hour d-flex align-items-center justify-content-center');
     saveBtn.text('Save');
-    time.text(i + ":00");
+    if(i<12){
+    time.text(i + "AM");
+    }
+    else if(i===12){
+    time.text(i + "PM");
+    }
+    else{
+    time.text(-12+ i + "PM")
+    }
     rows.append(time)
     rows.append(text);
     rows.append(saveBtn);
