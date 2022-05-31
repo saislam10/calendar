@@ -1,12 +1,14 @@
-var containerEl = $(".container");
-var input = $("#input");
+var today = moment();
+$("#currentDay").text(today.format("dddd, MMMM Do"));
 
 for (var i = 9; i <= 17; i++) {
+    var containerEl = $(".container");
     var rows = $("<div class=row>");
     var saveBtn = $("<button>").attr('class', 'col-1 saveBtn');
-    var text = $("<textarea>").attr('class', 'col-10')
+    var text = $("<textarea>").attr('class', 'col-10 text')
     var time = $("<div>").attr('class', 'col-1 hour d-flex align-items-center justify-content-center');
     saveBtn.text('Save');
+
     if (i < 12) {
         time.text(i + "AM");
     }
@@ -16,6 +18,7 @@ for (var i = 9; i <= 17; i++) {
     else {
         time.text(-12 + i + "PM")
     }
+
     rows.append(time)
     rows.append(text);
     rows.append(saveBtn);
@@ -30,38 +33,15 @@ for (var i = 9; i <= 17; i++) {
     if (moment().hour() < i){
         text.attr('class', 'future col-10')
     }
+
+    $(i).children().eq(1).val(localStorage.getItem(i));
+
 }
 
-
-// var submitNote = function (event) {
-//     event.preventDefault();
-//     //make sure submit button is the onebeing clicked
-//     var inputEL = input.val();
-
-//     var data = {
-//         info: inputEL,
-//     };
-
-//     var reminders = JSON.parse(localStorage.getItem("reminders")) || [];
-
-//     reminders.push(data);
-
-//     localStorage.setItem("reminders", JSON.stringify(reminders));
+$("button").on("click", function(event) {
+    localStorage.setItem($(event.target).parent().attr("class"), $(event.target).parent().children().eq(1).val());
+});
 
 
-
-//     input.val('');
-// };
-
-// var guestbook = JSON.parse(localStorage.getItem("guestbook")) || [];
-
-// guestbook.forEach(function (item) {
-//    console.log(item);
-// });
-
-// saveBtn.on('submit', submitNote);
-
-var today = moment();
-$("#currentDay").text(today.format("dddd, MMMM Do"));
 
 
