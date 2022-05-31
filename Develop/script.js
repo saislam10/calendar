@@ -9,8 +9,8 @@ for (var i = 9; i <= 17; i++){
     saveBtn.text('Save');
     time.text(i + ":00");
     rows.append(time)
-    rows.append(saveBtn);
     rows.append(text);
+    rows.append(saveBtn);
     containerEl.append(rows);
 }
 
@@ -24,13 +24,13 @@ for (var i = 9; i <= 17; i++){
 //         info: inputEL,
 //     };
 
-//     var guestbook = JSON.parse(localStorage.getItem("guestbook")) || [];
+//     var reminders = JSON.parse(localStorage.getItem("reminders")) || [];
 
-//     guestbook.push(data);
+//     reminders.push(data);
 
-//     localStorage.setItem("guestbook", JSON.stringify(guestbook));
+//     localStorage.setItem("reminders", JSON.stringify(reminders));
 
-//     // printGuestData(inputEL);
+   
 
 //     input.val('');
 // };
