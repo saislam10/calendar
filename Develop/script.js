@@ -6,6 +6,7 @@ for (var i = 9; i <= 17; i++) {
     var saveBtn = $("<button>").attr('class', 'col-1 saveBtn');
     var text = $("<textarea>").attr('class', 'col-10 text')
     var time = $("<div>").attr('class', 'col-1 hour d-flex align-items-center justify-content-center');
+    
     saveBtn.text('Save');
     if (i < 12) {
         time.text(i + "AM");
@@ -16,6 +17,11 @@ for (var i = 9; i <= 17; i++) {
     else {
         time.text(-12 + i + "PM")
     }
+
+    if (localStorage.getItem("reminders")){
+    text.val(JSON.parse(localStorage.getItem("reminders"))[time.text()]);
+    }
+
     rows.append(time)
     rows.append(text);
     rows.append(saveBtn);
@@ -29,12 +35,14 @@ for (var i = 9; i <= 17; i++) {
     if (moment().hour() < i) {
         text.attr('class', 'future col-10')
     }
-    $(i).children().eq(1).val(localStorage.getItem(i));
-
-
 }
 $('button').on("click", function (event) {
-    localStorage.setItem($(event.target).parent().attr("saveBtn"), $(event.target).parent().children().eq(1).val());
+    var storage = JSON.parse(localStorage.getItem("reminders")) || {};
+    var array = $(event.target).parent().children();
+    var timeKey = $(array[0]).text();
+    var inputValue = $(array[1]).val();
+    storage[timeKey] = inputValue
+    localStorage.setItem("reminders", JSON.stringify(storage));
 });
 
 
