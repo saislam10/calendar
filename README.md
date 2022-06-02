@@ -14,7 +14,7 @@ In this challenge, a workday calendar was created given the parameters. The para
 
 
 ## Visuals
-![Calendar](./Images/Work.png)
+![Calendar](./Work.png)
 
 ## Resources
 [LIVE SITE](https://saislam10.github.io/calendar/)
